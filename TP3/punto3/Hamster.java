@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Hamster implements Runnable{
     Plato plato= new Plato();

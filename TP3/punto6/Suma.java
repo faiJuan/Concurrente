@@ -7,7 +7,7 @@ package TP3.punto6;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Suma {
     private int suma;

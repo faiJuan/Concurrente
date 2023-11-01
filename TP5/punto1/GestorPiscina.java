@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class GestorPiscina {
     private Semaphore capacidad;

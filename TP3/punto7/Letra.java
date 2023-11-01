@@ -8,7 +8,7 @@ package TP3.punto7;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Letra implements Runnable {
     private char letra;

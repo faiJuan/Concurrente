@@ -8,7 +8,7 @@ package TP3.punto5;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Auto extends Vehiculo implements Runnable{
     private Surtidor surtidor;

@@ -7,7 +7,7 @@ package TP4.punto1;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class SynchronizedObjectCounter {
     private int c=0;

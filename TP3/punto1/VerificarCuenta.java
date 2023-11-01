@@ -8,7 +8,7 @@ package TP3.punto1;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class VerificarCuenta implements Runnable{
     private CuentaBanco cb = new CuentaBanco();

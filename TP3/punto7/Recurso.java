@@ -7,7 +7,7 @@ package TP3.punto7;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Recurso {
     private char turno;

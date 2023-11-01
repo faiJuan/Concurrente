@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class main {
 

@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class GestorImpresoras {
     private Semaphore impresora1;

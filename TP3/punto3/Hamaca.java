@@ -7,7 +7,7 @@ package TP3.punto3;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Hamaca {
     private boolean enUso=false;

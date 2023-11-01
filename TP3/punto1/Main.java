@@ -5,11 +5,11 @@
  */
 package TP3.punto1;
 
-import TP3.punto1.VerificarCuenta;
+
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Main {
     public static void main(String [] args){

@@ -7,7 +7,7 @@ package TP3.punto3;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Rueda {
     private boolean enUso=false;

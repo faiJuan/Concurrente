@@ -7,7 +7,7 @@ package TP4.punto6;
 
 /**
  *
- * @author Fenix
+ * @author juan.ramirez
  */
 public class Main {
 

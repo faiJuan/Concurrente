@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TP4.punto6;
+package ProductorConsumidor;
 
 /**
  *
  * @author juan.ramirez
  */
-public class Cliente {
+public class Productor {
     
 }
