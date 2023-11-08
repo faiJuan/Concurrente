@@ -1,34 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package TP5.punto1;
 
-import java.util.Random;
+
 import java.util.concurrent.Semaphore;
 
-/**
- *
- * @author juan.ramirez
- */
+
 public class GestorPiscina {
-    private Semaphore capacidad;
+    private Semaphore capacidad, mutex;
+    private int ingresaron;
     public GestorPiscina (int cant){
         this.capacidad= new Semaphore (cant, true);
+        this.ingresaron=0;
+
+        this.mutex= new Semaphore (1);
     }
     
     public void ingresarPiscina () throws InterruptedException{
+        mutex.acquire();
+        ingresaron++;
+        mutex.release();
         capacidad.acquire();
-        Random tiempo= new Random ();
         System.out.println(Thread.currentThread().getName()+" ingreso a la piscina");
         //pasa un tiempo
-        Thread.sleep((tiempo.nextInt()-5)*500);
-            
-    }
-    public void salir () throws InterruptedException{
+        Thread.sleep(1000);
         System.out.println(Thread.currentThread().getName()+" salio de la piscina");
+        mutex.acquire();
+        ingresaron--;
+        mutex.release();
         capacidad.release();
+        if (ingresaron ==0){
+            ingresaron=0;
+            System.out.println(Thread.currentThread().getName()+ " soy el ultimo");   
+        }
     }
     
 }

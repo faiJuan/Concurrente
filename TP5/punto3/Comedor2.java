@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TP5.punto3;
 
 import java.util.concurrent.Semaphore;
 
-/**
- *
- * @author juan.ramirez
- */
-public class Comedor {
-
+public class Comedor2 {
     private Semaphore tandaP, tandaG, platos, mutex, parop, parog;
     private int quierenComerP, quierenComerG, comieronP, comieronG, cantTanda;
     private char turno;
 
-    public Comedor(int cantPlatos, int cantTan) {
+    public Comedor2(int cantPlatos, int cantTan) {
         this.platos = new Semaphore(cantPlatos);
         this.tandaP = new Semaphore(0);
         this.tandaG = new Semaphore(0);
@@ -59,37 +49,7 @@ public class Comedor {
                 platos.release();
                 mutex.release();
                 //platos.release();
-                mutex.acquire();
-                if (comieronP <= cantTanda && quierenComerG > 0) {
-                    turno = 'g';
-                    tandaG.release(cantTanda);
-                    parog.release(cantTanda);
-                    comieronP = 0;
-                } else if (comieronP == cantTanda && quierenComerG == 0) {
-                    if (quierenComerP > 0) {
-                        tandaP.release(cantTanda);
-                        parop.release(cantTanda);
-                        comieronP = 0;
-                    } else {
-                        this.turno = 'n';
-                        comieronP = 0;
-                        comieronG = 0;
-                    }
-                } else if (comieronP < cantTanda && quierenComerP == 0) {
-                    tandaP.acquire(cantTanda - comieronP);
-                    parop.acquire(cantTanda-comieronP);
-                    this.turno = 'n';
-                    comieronP = 0;
-                    comieronG = 0;
-                } else if (comieronP < cantTanda && quierenComerG > 0 && quierenComerP==0){
-                    turno = 'g';
-                    tandaG.release(cantTanda);
-                    parog.release(cantTanda);
-                    comieronP = 0;
-                    tandaP.acquire(cantTanda - comieronP);
-                    //parop.acquire(cantTanda-comieronP);
-                }
-                mutex.release();
+                this.desicionPerro();
             } else {
                 parop.acquire();
             }
@@ -123,9 +83,50 @@ public class Comedor {
                 platos.release();
                 mutex.release();
                 //platos.release();
-                mutex.acquire();
-                if (comieronG <= cantTanda && quierenComerP > 0) {
+                this.desicionGato();
+            } else {
+                parog.acquire();
+            }
+        }
 
+        
+    }
+
+    private synchronized void desicionPerro () throws InterruptedException {
+        if (comieronP <= cantTanda && quierenComerG > 0) {
+                    turno = 'g';
+                    tandaG.release(cantTanda);
+                    parog.release(cantTanda);
+                    comieronP = 0;
+                } else if (comieronP == cantTanda && quierenComerG == 0) {
+                    if (quierenComerP > 0) {
+                        tandaP.release(cantTanda);
+                        parop.release(cantTanda);
+                        comieronP = 0;
+                    } else {
+                        this.turno = 'n';
+                        comieronP = 0;
+                        comieronG = 0;
+                    }
+                } else if (comieronP < cantTanda && quierenComerP == 0) {
+                    tandaP.acquire(cantTanda - comieronP);
+                    parop.acquire(cantTanda-comieronP);
+                    this.turno = 'n';
+                    comieronP = 0;
+                    comieronG = 0;
+                } else if (comieronP < cantTanda && quierenComerG > 0 && quierenComerP==0){
+                    turno = 'g';
+                    tandaG.release(cantTanda);
+                    parog.release(cantTanda);
+                    comieronP = 0;
+                    tandaP.acquire(cantTanda - comieronP);
+                    //parop.acquire(cantTanda-comieronP);
+                }
+
+    }
+
+    private synchronized void desicionGato () throws InterruptedException {
+        if (comieronG <= cantTanda && quierenComerP > 0) {
                     turno = 'p';
                     tandaP.release(cantTanda);
                     parop.release(cantTanda);
@@ -157,10 +158,6 @@ public class Comedor {
                     //parog.acquire(cantTanda-comieronP);
                 }
                 mutex.release();
-            } else {
-                parog.acquire();
-            }
-        }
     }
 
 }
