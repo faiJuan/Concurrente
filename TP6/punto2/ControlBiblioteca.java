@@ -9,25 +9,22 @@ public class ControlBiblioteca {
         this.contador=0;
     }
 
-    public synchronized void usarBiblioteca () throws InterruptedException{
-        contador++;
+    public synchronized void entrarBiblioteca () throws InterruptedException{
         while (contador>=cantidad){
             this.wait();
         }
-        this.usar();    
+        contador++;   
+    }
+
+    public synchronized void salirBiblioteca () throws InterruptedException{
         if(contador >= cantidad){
             contador--;
             this.notifyAll();
         }else{
             contador--;
         }
-        
     }
 
-    private void usar() throws InterruptedException{
-        System.out.println(Thread.currentThread().getName()+" entro en la biblioteca");
-        Thread.sleep(3000);
-        System.out.println(Thread.currentThread().getName()+" salio de la biblioteca");
-    }
+    
 
 }

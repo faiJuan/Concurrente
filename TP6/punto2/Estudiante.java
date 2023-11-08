@@ -8,7 +8,11 @@ public class Estudiante implements Runnable{
 
     public void run (){
         try{
-            biblioteca.usarBiblioteca();
+            biblioteca.entrarBiblioteca();
+            System.out.println(Thread.currentThread().getName()+" entro a la biblioteca");
+            Thread.sleep(3000);
+            System.out.println(Thread.currentThread().getName()+" salio de la biblioteca");
+            biblioteca.salirBiblioteca();
         }catch (InterruptedException e){
             
         }
